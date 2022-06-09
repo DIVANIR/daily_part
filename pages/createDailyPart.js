@@ -27,8 +27,6 @@ let valueInserted
 let timeout
 
 
-
-
 const CreateDailyPart = (props) => {
 
     const [hiddenLoad, sethIddenLoad] = useState(true)
