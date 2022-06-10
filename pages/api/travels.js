@@ -1,12 +1,14 @@
 import connect from "./connect"
 
+
+
 const tarvel = async (request, response) => {
 
     const getResult = async (sql) => {
         try {            
-
+            
             const data = await connect(sql)
-            console.log(data, sql)
+           
             response.status(201).json({data:{...data}, sql})
 
 
@@ -18,8 +20,9 @@ const tarvel = async (request, response) => {
     }
 
     if (request.method === "POST") {
-        console.log(request.body)
+        
         const { id_daily_part, line, startTime, startKM, origin, destiny, direction, startTicket = 0, endTime, endKM, passenger, endTicket = 0 } = JSON.parse(request.body)
+        
         const sql = `INSERT INTO 
                         travels( 
                             id_daily_part,
@@ -65,7 +68,7 @@ const tarvel = async (request, response) => {
         try{
             await getResult(sql)
         }catch(erro){
-            response.json(error)
+            response.json(erro)
         }
     }else if(request.method === "DELETE"){
         const { id } = JSON.parse(request.body)
